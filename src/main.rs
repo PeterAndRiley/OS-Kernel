@@ -13,12 +13,6 @@ pub extern fn abort () {
 
 // TODO: write the comment
 //       Peterlits<peterlitszo@outlook.com>
-#[lang = "eh_personality"]
-extern fn eh_personality () {
-}
-
-// TODO: write the comment
-//       Peterlits<peterlitszo@outlook.com>
 #[panic_handler]
 fn panic (_info: &PanicInfo) -> ! {
     loop { }
