@@ -1,5 +1,5 @@
 [package]
-name = "OS-Kernel"
+name = "os_kernel"
 version = "0.1.0"
 authors = ["Peterlits Zo <peterlitszo@outlook.com>"]
 edition = "2018"
