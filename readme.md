@@ -24,5 +24,5 @@ Use command following to build it:
 make run
 ```
 
-the target file is localed at `./target/debug/OS-Kernel`.
+It will run qemu to run the OS-Kernel.
 
