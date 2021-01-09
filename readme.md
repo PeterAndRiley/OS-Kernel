@@ -24,7 +24,7 @@ How to run it?
 
 Use command following to build it:
 ``` shell
-cargo rustc -- -C link-arg=-nostartfiles
+cargo build
 ```
 
 the target file is localed at `./target/debug/OS-Kernel`.
