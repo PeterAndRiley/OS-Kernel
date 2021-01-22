@@ -16,6 +16,7 @@ pub extern "C" fn rust_main() -> ! {
         ((end as usize - KERNEL_BEGIN_VADDR + KERNEL_BEGIN_PADDR) >> 12) + 1,
         PHYSICAL_MEMORY_END >> 12
     );
+    crate::memory::init_heap();
     unsafe {
         llvm_asm!("ebreak"::::"volatile");
     }

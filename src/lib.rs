@@ -1,6 +1,7 @@
 #![no_std]
 #![feature(llvm_asm)]
 #![feature(global_asm)]
+#![feature(alloc_error_handler)]
 
 #[macro_use]
 mod io;

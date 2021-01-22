@@ -3,3 +3,5 @@
 
 #[allow(unused_imports)]
 use os_kernel;
+
+extern crate alloc;
