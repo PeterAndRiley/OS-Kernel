@@ -26,3 +26,9 @@ make run
 
 It will run qemu to run the OS-Kernel.
 
+Thanks
+-------------------------------------------------------------------------------
+
+- The `rCore` project writeed by THU. [CLICK ME](https://github.com/rcore-os/rCore-Tutorial)
+  for more infomation.
+
