@@ -1,11 +1,12 @@
+${title.attribute}: (${title.scope}) ${title.subject}
+
+${body}
+
+${footer}
 
 # please follow this:
-# ${title.attribute}: (${title.scope}) ${title.subject}
-# [two-newlines] ${body}
-# [two-newlines] ${footer}
-#
 # details:
-# [title]
+# [title] (under 80 characters)
 #     - attribute
 #         - feat: new feature
 #         - fix : fix the bug
@@ -18,8 +19,8 @@
 #         : about what the commit for
 #     - subject
 #         : tell shortly
-# [body]
+# [body] (each line under 80 characters)
 #     : those details
-# [footer]
+# [footer] (each line under 80 characters)
 #     : about the issue message
 #
