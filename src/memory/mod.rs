@@ -40,3 +40,7 @@ pub fn init_heap() {
 fn alloc_error_handler(_: core::alloc::Layout) -> ! {
     panic!("alloc_error_handler do nothing but panic!");
 }
+
+pub fn access_pa_via_va(pa: usize) -> usize{
+    pa + super::consts::PHYSICAL_MEMORY_OFFSET
+}
