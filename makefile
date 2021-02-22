@@ -8,13 +8,13 @@ objcopy := rust-objcopy --binary-architecture=riscv64
 
 .PHONY: kernel build clean qemu run env tree
 
+kernel:
+	cargo build
+
 env:
 	cargo install cargo-binutils
 	rustup component add llvm-tools-preview rustfmt
 	rustup target add $(target)
-
-kernel:
-	cargo build
 
 $(bin): kernel
 	$(objcopy) $(kernel) --strip-all -O binary $@
