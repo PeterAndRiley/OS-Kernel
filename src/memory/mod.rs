@@ -2,7 +2,6 @@ mod frame_allocator;
 
 use frame_allocator::SEGMENT_TREE_ALLOCATOR as FRAME_ALLOCATOR;
 use riscv::addr::Frame;
-use core::alloc::{GlobalAlloc, Layout};
 
 use buddy_system_allocator::LockedHeap;
 use crate::consts::KERNEL_HEAP_SIZE;

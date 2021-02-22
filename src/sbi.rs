@@ -4,6 +4,8 @@
 fn sbi_call(which: usize, arg0: usize, arg1: usize, arg2: usize) -> usize {
     let ret;
     unsafe {
+        // 1. set the x10, x11, x12, x17 register in RISC-V 64
+        // 2. ecall to call OpenSBI
         llvm_asm!("ecall"
             : "={x10}" (ret)
             : "{x10}" (arg0), "{x11}" (arg1), "{x12}" (arg2), "{x17}" (which)

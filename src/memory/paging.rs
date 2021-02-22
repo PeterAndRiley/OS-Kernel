@@ -1,10 +1,21 @@
 use crate::consts::*;
-use crate::memory::{access_pa_via_va, alloc_frame, dealloc_frame};
+use crate::memory::{
+    access_pa_via_va,
+    alloc_frame,
+    dealloc_frame
+};
 use riscv::addr::*;
-use riscv::asm::{sfence_vma, sfence_vma_all};
+use riscv::asm::{
+    sfence_vma,
+    sfence_vma_all
+};
 use riscv::paging::{
-    FrameAllocator, FrameDeallocator, Mapper, PageTable as PageTableEntryArray, PageTableEntry,
-    PageTableFlags as EF, Rv39PageTable,
+    FrameAllocator,
+    FrameDeallocator,
+    Mapper, PageTable as PageTableEntryArray,
+    PageTableEntry,
+    PageTableFlags as EF,
+    Rv39PageTable,
 };
 use riscv::register::satp;
 
@@ -93,7 +104,9 @@ impl PageTableImpl {
     pub fn new_bare() -> Self {
         let frame = alloc_frame().expect("alloc_frame failed!");
         let paddr = frame.start_address().as_usize();
-        let table = unsafe { &mut *(access_pa_via_va(paddr) as *mut PageTableEntryArray) };
+        let table = unsafe {
+            &mut *(access_pa_via_va(paddr) as *mut PageTableEntryArray)
+        };
         table.zero();
 
         PageTableImpl {

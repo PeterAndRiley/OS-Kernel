@@ -1,11 +1,9 @@
 use riscv::register::{
     scause::{
-        self,
         Trap,
         Exception,
         Interrupt
     },
-    sepc,
     stvec,
     sscratch,
     sstatus
@@ -31,6 +29,7 @@ pub fn init() {
     println!("++++ setup interrupt! ++++");
 }
 
+// called by `trap/trap.asm`
 #[no_mangle]
 pub fn rust_trap(tf: &mut TrapFrame) {
     match tf.scause.cause() {
@@ -49,7 +48,7 @@ fn super_timer() {
     clock_set_next_event();
     unsafe {
         TICKS += 1;
-        if (TICKS == 100) {
+        if TICKS == 100 {
             TICKS = 0;
             println!("* 100 ticks *");
         }
