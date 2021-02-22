@@ -6,7 +6,9 @@
 OUTPUT_ARCH(riscv)
 ENTRY(_start)
 
-BASE_ADDRESS = 0x80200000;
+/* 0xffffffff80000000 ~ 0xffffffff80200000: OpenSBI */
+/* 0xffffffff80200000 ~ ...: OS-Kernel */
+BASE_ADDRESS = 0xffffffff80200000;
 
 SECTIONS
 {
@@ -14,6 +16,7 @@ SECTIONS
     . = BASE_ADDRESS;
     start = .;
 
+    . = ALIGN(4K);
     .text : {
         stext = .;
         *(.text.entry)
@@ -22,6 +25,7 @@ SECTIONS
         etext = .;
     }
 
+    . = ALIGN(4K);
     .rodata : {
         srodata = .;
         *(.rodata .rodata.*)
@@ -29,21 +33,25 @@ SECTIONS
         erodata = .;
     }
 
+    . = ALIGN(4K);
     .data : {
         sdata = .;
         *(.data .data.*)
         edata = .;
     }
 
+    . = ALIGN(4K);
     .stack : {
         *(.bss.stack)
     }
 
+    . = ALIGN(4K);
     .bss : {
         sbss = .;
         *(.bss .bss.*)
         ebss = .;
     }
 
+    . = ALIGN(4K);
     PROVIDE(end = .);
 }
