@@ -1,8 +1,22 @@
 ${title.attribute}: (${title.scope}) ${title.subject}
 
-${body}
+${body, 80 characters each line (containing the prefix whitespace) please:
 
-${footer}
+    - What is your aim in this single commit? What you want to achieve?
+    - The files' change:
+
+        - Which files are changed? Why you want to change it?
+        - Which files are new? Why you add it?
+        - Which files are deleted? Why you delete it?
+
+        (Note the style of list please: there are blank lines at the list body's
+        begin and end, and there are 4 whitespace(not tab!) to indent self.
+        Holding the style of the git message to be consistent are helpful to
+        make a nice git history)
+
+}
+
+${footer, 80 characters each line (containing the prefix whitespace) please}
 
 # please follow this:
 # details:
