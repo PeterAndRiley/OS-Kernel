@@ -1,10 +1,21 @@
 use crate::consts::*;
-use crate::memory::{access_pa_via_va, alloc_frame, dealloc_frame};
+use crate::memory::{
+    access_pa_via_va,
+    alloc_frame,
+    dealloc_frame
+};
 use riscv::addr::*;
-use riscv::asm::{sfence_vma, sfence_vma_all};
+use riscv::asm::{
+    sfence_vma,
+    sfence_vma_all
+};
 use riscv::paging::{
-    FrameAllocator, FrameDeallocator, Mapper, PageTable as PageTableEntryArray, PageTableEntry,
-    PageTableFlags as EF, Rv39PageTable,
+    FrameAllocator,
+    FrameDeallocator,
+    Mapper, PageTable as PageTableEntryArray,
+    PageTableEntry,
+    PageTableFlags as EF,
+    Rv39PageTable,
 };
 use riscv::register::satp;
 
@@ -93,7 +104,9 @@ impl PageTableImpl {
     pub fn new_bare() -> Self {
         let frame = alloc_frame().expect("alloc_frame failed!");
         let paddr = frame.start_address().as_usize();
-        let table = unsafe { &mut *(access_pa_via_va(paddr) as *mut PageTableEntryArray) };
+        let table = unsafe {
+            &mut *(access_pa_via_va(paddr) as *mut PageTableEntryArray)
+        };
         table.zero();
 
         PageTableImpl {
@@ -155,38 +168,6 @@ impl PageTableImpl {
         if new_token != old_token {
             Self::set_token(new_token);
             Self::flush_tlb();
-        }
-    }
-}
-
-#[derive(Clone, Copy, PartialEq, Eq)]
-#[repr(C)]
-pub struct PageRange {
-    start: usize,
-    end: usize,
-}
-
-// Implement iterator tray for PageRange 
-// as an iterator that can be traversed
-impl Iterator for PageRange {
-    type Item = usize;
-
-    fn next(&mut self) -> Option<usize> {
-        if self.start < self.end {
-            let page = self.start << 12;
-            self.start += 1;
-            Some(page)
-        } else {
-            None
-        }
-    }
-}
-
-impl PageRange {
-    pub fn new(start_addr: usize, end_addr: usize) -> Self {
-        PageRange {
-            start: start_addr / PAGE_SIZE,
-            end: (end_addr - 1) / PAGE_SIZE + 1,
         }
     }
 }
