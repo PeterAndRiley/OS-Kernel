@@ -14,3 +14,4 @@ mod context;
 mod timer;
 mod memory;
 mod consts;
+extern crate alloc;
